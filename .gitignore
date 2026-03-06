@@ -1,0 +1,31 @@
+.DS_Store
+
+# LaTeX build artifacts
+*.aux
+*.bbl
+*.bcf
+*.blg
+*.fdb_latexmk
+*.fls
+*.fmt
+*.ilg
+*.ind
+*.lof
+*.log
+*.lot
+*.out
+*.run.xml
+*.synctex.gz
+*.toc
+*.xdv
+
+# Temporary/editor files
+*.swp
+*.swo
+*~
+
+# Large replication data and generated binaries
+Replication_package_2Tails/Relication_section2_appB_D_E/data/
+Replication_package_2Tails/Relication_section2_appB_D_E/Output/
+Replication_package_2Tails/Replication_section3_appG/Output/
+*.mat

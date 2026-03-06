@@ -1,0 +1,14 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+
+# Local virtual environments and test caches
+.venv/
+.pytest_cache/
+
+# Runtime outputs and solver cache
+Output/
+.cache/
+
+# Local editor settings
+.vscode/

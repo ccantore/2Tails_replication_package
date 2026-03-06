@@ -1,0 +1,90 @@
+{
+  "het": [
+    {
+      "name": "HANK-HetL EIS1",
+      "base_key": "HANK-HetL",
+      "overrides": {
+        "eis": 1.0
+      }
+    },
+    {
+      "name": "HANK-HetL",
+      "base_key": "HANK-HetL",
+      "overrides": {}
+    },
+    {
+      "name": "HANK-HetL EIS025",
+      "base_key": "HANK-HetL",
+      "overrides": {
+        "eis": 0.25
+      }
+    },
+    {
+      "name": "HANK-HetL EIS1 a0",
+      "base_key": "HANK-HetL",
+      "overrides": {
+        "eis": 1.0,
+        "min_a": 0.0
+      }
+    },
+    {
+      "name": "HANK-HetL a0",
+      "base_key": "HANK-HetL",
+      "overrides": {
+        "min_a": 0.0
+      }
+    },
+    {
+      "name": "HANK-HetL EIS025 a0",
+      "base_key": "HANK-HetL",
+      "overrides": {
+        "eis": 0.25,
+        "min_a": 0.0
+      }
+    }
+  ],
+  "hom": [
+    {
+      "name": "HANK-HomL EIS1",
+      "base_key": "HANK-HomL",
+      "overrides": {
+        "eis": 1.1
+      }
+    },
+    {
+      "name": "HANK-HomL",
+      "base_key": "HANK-HomL",
+      "overrides": {}
+    },
+    {
+      "name": "HANK-HomL EIS025",
+      "base_key": "HANK-HomL",
+      "overrides": {
+        "eis": 0.445
+      }
+    },
+    {
+      "name": "HANK-HomL EIS1 a0",
+      "base_key": "HANK-HomL",
+      "overrides": {
+        "eis": 1.1,
+        "min_a": 0.0
+      }
+    },
+    {
+      "name": "HANK-HomL a0",
+      "base_key": "HANK-HomL",
+      "overrides": {
+        "min_a": 0.0
+      }
+    },
+    {
+      "name": "HANK-HomL EIS025 a0",
+      "base_key": "HANK-HomL",
+      "overrides": {
+        "eis": 0.445,
+        "min_a": 0.0
+      }
+    }
+  ]
+}

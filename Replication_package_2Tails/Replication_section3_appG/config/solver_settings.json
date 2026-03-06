@@ -1,0 +1,102 @@
+{
+  "steady_state": {
+    "solver": "hybr",
+    "het": {
+      "unknowns": {
+        "beta": 0.99,
+        "vphi": 0.77,
+        "B": 0.7
+      },
+      "targets": {
+        "asset_mkt": 0,
+        "labor_mkt": 0,
+        "HTM": 0.2
+      }
+    },
+    "hom": {
+      "unknowns": {
+        "beta": 0.99,
+        "vphi": 0.833,
+        "B": 4.0
+      },
+      "targets": {
+        "asset_mkt": 0,
+        "labor_mkt": 0,
+        "HTM": 0.2
+      }
+    }
+  },
+  "irf": {
+    "T": 300,
+    "rho_r": 0.61,
+    "sig_r": 0.0025,
+    "exogenous": [
+      "rstar",
+      "Z"
+    ],
+    "het": {
+      "unknowns": [
+        "pi",
+        "w",
+        "Y",
+        "B"
+      ],
+      "targets": [
+        "nkpc_res",
+        "asset_mkt",
+        "labor_mkt",
+        "goods_mkt"
+      ],
+      "hh_inputs": [
+        "w",
+        "r",
+        "Div",
+        "Tax"
+      ]
+    },
+    "hom": {
+      "unknowns": [
+        "pi",
+        "Y",
+        "N"
+      ],
+      "targets": [
+        "nkpc_res",
+        "asset_mkt",
+        "labor_mkt"
+      ],
+      "hh_inputs": [
+        "w",
+        "r",
+        "Div",
+        "Tax",
+        "N"
+      ]
+    }
+  },
+  "plotting": {
+    "state_labels": [
+      "P0_2",
+      "P2_11",
+      "P11_34",
+      "P34_66",
+      "P66_89",
+      "P89_98",
+      "P98_100"
+    ],
+    "income_labels": [
+      "P0_2",
+      "P2_11",
+      "P11_34",
+      "P34_66",
+      "P66_89",
+      "P89_98",
+      "P98_100"
+    ],
+    "usetex": true
+  },
+  "cache": {
+    "enabled": true,
+    "dir": ".cache"
+  }
+}
