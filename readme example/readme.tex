@@ -1,0 +1,220 @@
+\documentclass{article}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{lipsum}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{lscape}
+
+\usepackage[colorlinks=true, linkcolor=blue, urlcolor=blue, citecolor=blue]{hyperref}
+\geometry{a4paper, margin=1in}
+
+\begin{document}
+	
+	\begin{titlepage}
+		\centering
+		\vspace*{2cm}
+		
+		{\LARGE \textbf{Title\\
+				\vspace*{0.25cm}
+				 }}
+		
+		\vspace{0.5cm}
+		
+		\rule{0.8\textwidth}{0.4pt}\\
+		
+		\vspace{0.5cm}
+		
+		\begin{center}
+			{\large {Readme for the replication codes}}
+		\end{center}
+		
+		\vspace{0.5cm}
+		
+		\textbf{Authors}
+		
+		\vspace{1.5cm}
+		
+		\textbf{March 06, 2026}\\
+		
+		\vfill
+		
+		
+		
+		\vspace{0.8cm}
+		
+		Manuscript ID: Number\\
+		%		Repository Project ID:
+		
+	\end{titlepage}
+	
+	\section{Hardware and software requirements (including packages and libraries) and the expected running time}
+	
+	\subsection{Hardware requirements}
+	The code was run on a Dell XPS 15 9550 computer with the following specifications:
+	
+	\begin{itemize}
+		\item operating system: Windows 10 Pro (64-bit) (10.0, Build 19045)
+		\item processor: Intel Core i7-6700HQ CPU @ 2.60GHz (8 CPUs)
+		\item BIOS: 1.14.0 (type: UEFI)
+		\item RAM: 16.00 GB
+	\end{itemize}
+	
+	
+	\subsection{Software requirements}
+	
+	\begin{itemize}
+		\item Matlab (Version 9.3, Release 2017b)
+		\begin{itemize}
+			\item Simulink: Version 9.0
+			\item Control System Toolbox: Version 10.3
+			\item Econometrics Toolbox: Version 4.1
+			\item Financial Instruments Toolbox: Version 2.6
+			\item Financial Toolbox: Version 5.10
+			\item Global Optimization Toolbox: Version 3.4.3
+			\item Optimization Toolbox: Version 8.0
+			\item Parallel Computing Toolbox: Version 6.11
+			\item Partial Differential Equation Toolbox: Version 2.5
+			\item Statistics and Machine Learning Toolbox: Version 11.2
+		\end{itemize}
+		
+	\end{itemize}
+	
+	\subsection{Expected running time}
+	The total runtime required is approximately 1 day.
+	
+	\section{Data}
+	This section provides a comprehensive overview of the data used. It includes a Data Availability Statement detailing the source and accessibility of each dataset, followed by citations for data sources. Additionally, a summary of data descriptions and files is provided, outlining the structure and content of the datasets and file formats used for analysis and estimation.
+	\subsection{Data availability statement}
+	The data used in this replication package is sourced from the Federal Reserve Economic Data (FRED) managed by the Economic Research Division of the Federal Reserve Bank of St. Louis. The dataset is publicly accessible and can be obtained from the following link:
+	\url{https://fred.stlouisfed.org}
+	
+	\subsection{Data citations}
+	Federal Reserve Economic Data, Economic Research Division, Federal Reserve Bank of St. Louis. Available at: \url{https://fred.stlouisfed.org}
+	
+	\subsection{Data descriptions and files}
+	
+	\setlength{\tabcolsep}{10pt} 
+	\renewcommand{\arraystretch}{1.4} 
+	
+\begin{table}[H]
+	\centering
+	\caption{Data description}
+	\resizebox{\textwidth}{!}{%
+		\begin{tabular}{l>{\raggedright\arraybackslash}p{3cm} >{\raggedright\arraybackslash}p{1.5cm} >{\raggedright\arraybackslash}p{2.5cm} >{\raggedright\arraybackslash}p{4cm}}
+			\\
+			\hline
+			\textbf{Variable} & \textbf{Description} & \textbf{Source} & \textbf{Sample} & \textbf{Transformation} \\
+			\hline
+			$Y_t$ & Macroeconomic variable & Source A & 2000Q1--2020Q4 & Log-transformed and demeaned. \\
+			$R_t$ & Policy variable & Source B & 2000Q1--2020Q4 & Mean-adjusted. \\
+			$P_t$ & Price index & Source C & 2000Q1--2020Q4 & Log difference. \\
+			$W_t$ & Wage variable & Source D & 2000Q1--2020Q4 & No transformation. \\
+			\hline
+		\end{tabular}%
+	}
+\end{table}
+	
+	
+\begin{table}[h!]
+	\centering
+	\caption{Data structure for variables and files}
+	\begin{tabular}{ll}
+		\\
+		\hline
+		\textbf{File} & \textbf{Description} \\
+		\hline
+		\texttt{variable1.xls}  & Data series for the price index. \\
+		\texttt{variable2.xls}  & Data series for the wage. \\
+		\texttt{rawData.mat}  & Raw data file containing the data in its initial form, before processing. \\
+		\texttt{fullsampleData.mat} & Full sample dataset used for illustration purposes. \\
+		\texttt{data.wf1} & Workfile containing original and transformed series. \\
+		\texttt{data.xls} & Spreadsheet containing the variables used for estimation. \\
+		\texttt{data.mat} & Final database file used for estimation after processing. \\
+		\hline
+	\end{tabular}
+\end{table}
+	
+	
+	\section{Description of programs}
+	
+	This section provides an overview of the replication process for the various figures and tables included in the analysis. For each replication step, the code used, the input data files, and the expected output files are documented in the table. The table also reports the appendix figures and tables for supplementary materials.%\footnote{Some variable and parameter names in the code differ from the corresponding symbols used in the paper for the same variables and parameters. These discrepancies result from several adjustments made to the notation in the paper.}
+	
+	
+\begin{longtable}
+	{>{\raggedright\arraybackslash}p{0.3\textwidth} @{ } >{\raggedright\arraybackslash}p{0.65\textwidth} @{}} 
+	\caption{Code and output structure} \\
+	\hline
+	\hline
+	\textbf{Step} & \textbf{Code and Output} \\
+	\hline
+	\endfirsthead
+	\hline
+	\textbf{Step} & \textbf{Code and Output} \\
+	\hline
+	\endhead
+	\hline
+	\endlastfoot
+	
+	\textbf{Step 1: Illustration} & 
+	\begin{itemize}
+		\item Figure generated by the code.
+		\item Placeholder for graphical output.
+	\end{itemize}
+	\\
+	\hline
+	
+	\textbf{Step 2: Results} & 
+	\begin{itemize}
+		\item Code: \texttt{codes\_script.m}
+		\item Input: \texttt{input\_data/}, \texttt{model\_files/}
+		\item Output: \texttt{results\_results.mat}
+	\end{itemize}
+	\\
+	\hline
+	
+\end{longtable}
+	
+	\section{Instructions}
+	
+	
+	\begin{enumerate}
+		\item \textbf{Set the Current Folder in MATLAB}:  
+		Open MATLAB and set the current working directory to the folder where this repository has been saved or extracted. You can do this by navigating to the folder in the MATLAB interface or by using the command:
+		\begin{verbatim}
+			cd('path_to_repository')
+		\end{verbatim}
+		Replace \texttt{path\_to\_repository} with the actual path where the files are stored.
+		
+		%\item \textbf{Check for Required Toolboxes}:  
+		%Ensure that you have the following MATLAB toolboxes installed and available:
+		%\begin{itemize}
+		%	\item Optimization Toolbox
+		%	\item Symbolic Math Toolbox
+		%	\item Statistics and Machine Learning Toolbox (if required for certain steps)
+		%\end{itemize}
+		
+		\item \textbf{Add Subfolders to the MATLAB Path}:  
+		The repository includes subfolders, such as \texttt{data}, \texttt{codes}, \texttt{results}, ensure they are added to the MATLAB path by running:
+		\begin{verbatim}
+			addpath(genpath(pwd))
+		\end{verbatim}
+		
+		\item \textbf{Running the Main Script}:  
+		To reproduce the results, execute the following main script:
+		\begin{verbatim}
+			run('replication.m')
+		\end{verbatim}
+		%The script will load the necessary data, process it, and generate the results, in the \texttt{results} folder.
+		The script will load and use the necessary raw data, process it, and generate the results, in the \texttt{results} folder.
+		
+	\end{enumerate}
+	
+	\section*{References}
+	
+	\noindent References here.
+	
+	
+\end{document}

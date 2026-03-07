@@ -5,7 +5,9 @@
 % - Uses packaged datasets already stored in data/Raw_data/.
 % - Writes all PDFs to Replication_files_section2_appB_D_E/Output/.
 % - Covers Figures 1-5, D1, D2, D4, D7, D8, E1.
-% - Excludes FigureA1_A2 and FigureA3 (external CEPR CSV prerequisites).
+% - Rebuilds cached Appendix A CEPR composition figures without rerunning
+%   the original long CEPR extraction scripts.
+% - Excludes FigureA3.
 %
 % At launch, you are asked to choose:
 % 1) Full run: estimation + plots
@@ -17,6 +19,8 @@
 % - mode = 'fast'; run('run_empirical_replication.m');   % alias for plot
 
 close all
+clear all
+clc
 
 this_dir = fileparts(mfilename('fullpath'));
 orig_dir = pwd;
@@ -72,6 +76,12 @@ jobs = {
     'FigureD7', 'estimate_new_f4_quant.m',      'plot_figureD7.m', {'results.mat','priors_1.mat'},                                      'hours_educ1.pdf';
     'FigureD8', '',                              'plot_figureD8.m', {fullfile('..','Figure1','results.mat'),fullfile('..','Figure1','priors_1.mat')}, 'figure_wages.pdf';
     'FigureE1', 'estimate_new_f4_quant.m',      'plot_FigureE1.m', {'results.mat','priors_1.mat'},                                      'figure_panel3M.pdf';
+};
+
+cached_jobs = {
+    'industry_by_wage_quintile_cepr_av.pdf', @() local_plot_cached_industry_by_wage(this_dir, out_dir);
+    'college_by_wage2.pdf',                  @() local_plot_cached_college_by_wage2(this_dir, out_dir);
+    'college_by_wage3.pdf',                  @() local_plot_cached_college_by_wage3(this_dir, out_dir);
 };
 
 failed_jobs = {};
@@ -131,11 +141,38 @@ for i = 1:size(jobs,1)
     end
 end
 
+for i = 1:size(cached_jobs,1)
+    output_pdf = cached_jobs{i,1};
+    build_cached_pdf = cached_jobs{i,2};
+    t_job = tic;
+    fprintf('[%s] START cached %s\n', local_timestamp(), output_pdf);
+
+    try
+        build_cached_pdf();
+
+        expected_pdf = fullfile(out_dir, output_pdf);
+        if exist(expected_pdf,'file') ~= 2
+            error('run_empirical_replication:MissingOutput', ...
+                'Expected output file not found: %s', expected_pdf);
+        end
+
+        fprintf('[%s] SUCCESS cached %s (%.1fs)\n\n', ...
+            local_timestamp(), output_pdf, toc(t_job));
+    catch ME
+        fprintf(2,'[%s] FAIL cached %s (%.1fs)\n', ...
+            local_timestamp(), output_pdf, toc(t_job));
+        fprintf(2,'[%s]   %s\n\n', local_timestamp(), ME.message);
+        failed_jobs{end+1} = output_pdf;
+        failed_msgs{end+1} = ME.message;
+    end
+end
+
 fprintf('============================================================\n');
 fprintf('[%s] Replication runner summary\n', local_timestamp());
 fprintf('Mode: %s\n', mode);
-fprintf('Total jobs: %d\n', size(jobs,1));
-fprintf('Succeeded: %d\n', size(jobs,1) - numel(failed_jobs));
+total_jobs = size(jobs,1) + size(cached_jobs,1);
+fprintf('Total jobs: %d\n', total_jobs);
+fprintf('Succeeded: %d\n', total_jobs - numel(failed_jobs));
 fprintf('Failed: %d\n', numel(failed_jobs));
 
 if isempty(failed_jobs)
@@ -151,6 +188,83 @@ end
 
 function local_run_script(script_name)
     run(script_name);
+end
+
+function local_plot_cached_industry_by_wage(this_dir, out_dir)
+    cache_file = local_first_existing({
+        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','ind_wage_cepr.mat')
+        fullfile(this_dir,'data','Raw_data','CPS','Output','ind_wage_cepr.mat')
+    });
+    S = load(cache_file, 'DATA2', 'PROB');
+
+    nam = {'agr','min','con','man','trade','trans','info', ...
+        'fin','prof','health','fun','other','public'};
+    namesxx = arrayfun(@(p) strcat('<', num2str(p)), S.PROB, 'UniformOutput', false);
+
+    fig = figure('Visible','off');
+    bar(categorical(namesxx,namesxx), ...
+        reshape(nanmean(S.DATA2), numel(nam), numel(S.PROB))', 'stacked');
+    title('Industry Across the wage distribution');
+    xlabel('wage distribution');
+    legend(nam);
+    axis tight;
+    ylim([0 1]);
+    exportgraphics(fig, fullfile(out_dir,'industry_by_wage_quintile_cepr_av.pdf'), ...
+        'ContentType','vector');
+    close(fig);
+end
+
+function local_plot_cached_college_by_wage2(this_dir, out_dir)
+    cache_file = local_first_existing({
+        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','educ_wage_cepr_all.mat')
+        fullfile(this_dir,'data','Raw_data','CPS','Output','educ_wage_cepr_all.mat')
+    });
+    S = load(cache_file, 'DATA2', 'PROB');
+
+    nam = {'LTHS','HS','Somecollege','college','advanced'};
+    namesxx = arrayfun(@(p) strcat('<', num2str(p)), S.PROB, 'UniformOutput', false);
+
+    fig = figure('Visible','off');
+    bar(categorical(namesxx,namesxx), ...
+        reshape(nanmean(S.DATA2), numel(nam), numel(S.PROB))', 'stacked');
+    title('Education Across the wage distribution');
+    xlabel('wage distribution');
+    legend(nam);
+    axis tight;
+    ylim([0 1]);
+    exportgraphics(fig, fullfile(out_dir,'college_by_wage2.pdf'), ...
+        'ContentType','vector');
+    close(fig);
+end
+
+function local_plot_cached_college_by_wage3(this_dir, out_dir)
+    cache_file = local_first_existing({
+        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','educ_industry_low_wage_cepr.mat')
+    });
+    S = load(cache_file, 'plot_matrix', 'industry_labels', 'education_labels');
+
+    fig = figure('Visible','off');
+    bar3(categorical(S.industry_labels, S.industry_labels), S.plot_matrix, 'stacked');
+    zlabel('percent');
+    legend(S.education_labels);
+    title('Industry employees by education level (low wage)');
+    exportgraphics(fig, fullfile(out_dir,'college_by_wage3.pdf'), ...
+        'ContentType','vector');
+    close(fig);
+end
+
+function out = local_first_existing(paths)
+    out = '';
+    for i = 1:numel(paths)
+        if exist(paths{i},'file') == 2
+            out = paths{i};
+            return;
+        end
+    end
+
+    error('run_empirical_replication:MissingCache', ...
+        'None of the expected cache files exists:\n - %s', ...
+        strjoin(paths, sprintf('\n - ')));
 end
 
 function out = local_timestamp()

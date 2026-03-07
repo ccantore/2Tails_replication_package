@@ -36,31 +36,6 @@ python run_replication.py --config-dir config --output-dir Output
 - `src/hank_replication/tables.py`: Table 2, Table 3, and steady-state summaries.
 - `src/hank_replication/pipeline.py`: full replication pipeline and manifest export.
 
-## Calibration Workflow (Compact and Editable)
-
-Use these files only:
-
-1. `config/base_calibration.json`
-2. `config/scenario_overrides.json`
-3. `config/solver_settings.json`
-
-### Add or modify a scenario
-
-Edit `scenario_overrides.json` under `het` or `hom` with:
-
-- `name`: final scenario name used in output filenames.
-- `base_key`: one of `HANK-HetL` or `HANK-HomL`.
-- `overrides`: only changed parameters.
-
-No code edits are required for typical calibration sweeps.
-
-## Efficiency Improvements Implemented
-
-1. Config-driven scenario expansion replaces repetitive calibration copy blocks.
-2. Shared plotting functions replace repeated plotting code blocks.
-3. Shared solver utilities centralize steady-state, Jacobian, and IRF logic.
-4. Optional disk cache (`solver_settings.json -> cache`) avoids recomputing expensive solves.
-5. Run manifest (`Output/run_manifest.json`) records generated artifacts and key metrics.
 
 ## Outputs
 
@@ -75,11 +50,6 @@ The script writes figures and tables to `Output/` with replication filenames and
 - `table3_matchAggL.tex`
 - `run_manifest.json`
 
-## Tests
+## Running times
 
-```bash
-pytest -q
-```
-
-- `tests/test_config_and_scenarios.py`: validates deterministic scenario expansion.
-- `tests/test_smoke_full_run.py`: reduced-size smoke run and output manifest checks.
+5 minutes to run the full replications on a standard desktop machine.
