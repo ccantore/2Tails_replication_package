@@ -50,7 +50,7 @@ h1=plotx99(1:19,squeeze(irfsavem(1:5,6,150:2:187))','b','b')
 hold on
 h2=plotx99(1:19,squeeze(irfsavem(1:5,12,150:2:187))','r','r')
 title('Response of Wages across the Distribution','interpreter','latex')
-legend([h1(1) h2(1)],{'6 mths', '2 years'})%,'2 years' })
+legend([h1(1) h2(1)],{'6 months', '2 years'})%,'2 years' })
 ax=gca
 ax.XTick=1:19;
 ax.XTickLabel=namesz;

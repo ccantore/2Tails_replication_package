@@ -37,7 +37,7 @@ ylabel('percent','interpreter','latex')
 end
 end
 subplot(2,5,[6:10])
-h1=plotx99(1:19,squeeze(irfsavem(1:5,12,151:2:188))','b','b')
+h1=plotx99(1:19,squeeze(irfsavem(1:5,6,151:2:188))','b','b')
 hold on
 h2=plotx99(1:19,squeeze(irfsavem(1:5,24,151:2:188))','r','r')
 ylabel('percent','interpreter','latex')
@@ -45,7 +45,7 @@ ylabel('percent','interpreter','latex')
 %hold on
 %h3=plotx99(1:19,squeeze(irfsavem(1:5,24,151:2:188))','b','b')
 title('Response of the Distribution of hours','interpreter','latex')
-legend([h1(1) h2(1)],{'1 year', '2 years'})%,'2 years' })
+legend([h1(1) h2(1)],{'6 months', '2 years'})%,'2 years' })
 ax=gca
 ax.XTick=1:19;
 ax.XTickLabel=namesz;

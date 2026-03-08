@@ -163,6 +163,7 @@ namesxx=categorical(namesxx,namesxx);
 
 datam=mean(DATA,3);
 fig_char = figure(1);
+set(fig_char, 'Units', 'pixels', 'Position', [100 100 900 1200]);
 subplot(3,2,1)
 bar(namesxx,datam(:,1));
 title('Hours')

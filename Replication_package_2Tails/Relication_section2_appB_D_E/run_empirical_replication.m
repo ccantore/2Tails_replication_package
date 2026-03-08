@@ -1,13 +1,11 @@
 % run_empirical_replication
-% One-click empirical replication runner for Section 2 and Appendix D/E.
+% One-click empirical replication runner for Section 2 and Appendix A/D/E.
 %
 % This script:
 % - Uses packaged datasets already stored in data/Raw_data/.
 % - Writes all PDFs to Replication_files_section2_appB_D_E/Output/.
-% - Covers Figures 1-5, D1, D2, D4, D7, D8, E1.
-% - Rebuilds cached Appendix A CEPR composition figures without rerunning
-%   the original long CEPR extraction scripts.
-% - Excludes FigureA3.
+% - Covers Figures 1-5, A1, A2, A3, D1, D2, D4, D7, D8, E1.
+% - Rebuilds cached CEPR composition figures used elsewhere in the paper.
 %
 % At launch, you are asked to choose:
 % 1) Full run: estimation + plots
@@ -70,6 +68,11 @@ jobs = {
     'Figure3',  'estimate_new_f4_quant.m',      'plot_figure3.m',  {'results.mat','priors_1.mat'},                                      'figure3.pdf';
     'Figure4',  'estimate_new_f4_quant_FT.m',   'plot_figure4.m',  {'results.mat','priors_1.mat'},                                      'figure_ft_2.pdf';
     'Figure5',  'estimate_new_f4GR.m',          'plot_Figure5.m',  {'results.mat','priors_1.mat'},                                      'figure4_6.pdf';
+    'FigureA1_A2', '',                           'extract_CEPR_Char.m', local_yearly_files(...
+        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA'), 'dataun_%d.csv', 1985, 2019), {'char.pdf','industry_by_wage_quintile_cepr_av_app.pdf'};
+    'FigureA3', '',                              'construct_aggregate.m', [local_yearly_files(...
+        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA'), 'data_%d.csv', 1979, 2019), ...
+        {fullfile(this_dir,'data','Raw_data','raw','AWHNONAG.xls')}], {'ag_hours.pdf'};
     'FigureD1', 'estimate_new_f4_quant.m',      'plot_figureD1.m', {'results.mat','priors_1.mat'},                                      'figure_mpi.pdf';
     'FigureD2', 'estimate_new_f4_quant_sign.m', 'plot_figureD2.m', {'results.mat'},                                                     'figure_sign.pdf';
     'FigureD4', 'estimate_new_f4_quant.m',      'plot_FigureD4.m', {'results.mat','priors_1.mat'},                                      'hours_ind.pdf';
@@ -92,7 +95,7 @@ for i = 1:size(jobs,1)
     estimate_script = jobs{i,2};
     plot_script = jobs{i,3};
     fast_required = jobs{i,4};
-    output_pdf = jobs{i,5};
+    output_pdfs = local_as_cellstr(jobs{i,5});
 
     t_job = tic;
     job_dir = fullfile(this_dir, job_name);
@@ -123,10 +126,11 @@ for i = 1:size(jobs,1)
         local_run_script(plot_script);
 
         cd(this_dir);
-        expected_pdf = fullfile(out_dir, output_pdf);
-        if exist(expected_pdf,'file') ~= 2
+        missing_outputs = local_missing_files(fullfile(out_dir, output_pdfs));
+        if ~isempty(missing_outputs)
             error('run_empirical_replication:MissingOutput', ...
-                'Expected output file not found: %s', expected_pdf);
+                'Expected output file(s) not found for %s:\n - %s', ...
+                job_name, strjoin(missing_outputs, sprintf('\n - ')));
         end
 
         fprintf('[%s] SUCCESS %s (%.1fs)\n\n', ...
@@ -265,6 +269,41 @@ function out = local_first_existing(paths)
     error('run_empirical_replication:MissingCache', ...
         'None of the expected cache files exists:\n - %s', ...
         strjoin(paths, sprintf('\n - ')));
+end
+
+function out = local_as_cellstr(x)
+    if ischar(x)
+        out = {x};
+        return;
+    end
+    if isstring(x)
+        out = cellstr(x(:));
+        return;
+    end
+    if iscell(x)
+        out = x;
+        return;
+    end
+
+    error('run_empirical_replication:BadOutputList', ...
+        'Output spec must be char, string, or cellstr.');
+end
+
+function out = local_yearly_files(base_dir, pattern, year_start, year_end)
+    years = year_start:year_end;
+    out = cell(1, numel(years));
+    for i = 1:numel(years)
+        out{i} = fullfile(base_dir, sprintf(pattern, years(i)));
+    end
+end
+
+function missing = local_missing_files(paths)
+    missing = {};
+    for i = 1:numel(paths)
+        if exist(paths{i},'file') ~= 2
+            missing{end+1} = paths{i};
+        end
+    end
 end
 
 function out = local_timestamp()

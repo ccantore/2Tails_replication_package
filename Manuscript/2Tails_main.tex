@@ -102,6 +102,8 @@ Angeliki Theophilopoulou\\Brunel University London
        % {\small (Please do not quote without the authors' permission)}\\%(First draft: January 2021)\\[.5ex]
        % \textbf{Preliminary and Incomplete}
        }
+% Cross-refs to the online appendix (e.g. \ref{App:IV}, \ref{App:PriorPosterior}) require
+% 2Tails_online_appendix.aux to exist: compile 2Tails_online_appendix.tex first, then this file (twice).
 \externaldocument[][nocite]{2Tails_online_appendix}
 
 
@@ -328,7 +330,7 @@ In particular, the horizontal axis reports different percentiles of the wage ear
 	\caption{Distribution of responses to a monetary policy shock.}
 	\centering
     %[trim=left bottom right top, clip]
-\includegraphics[width=0.9\textwidth,trim = 2cm 4.1cm 2cm 3.8cm]{figures_final/figure2_6.pdf}
+\includegraphics[width=0.9\textwidth]{figures_final/figure2_6.pdf}
 	\label{FF:disaggregate:IRF}
     
 	{\footnotesize \textit{Notes:} This figure depicts the impulse responses to a monetary policy tightening shock. Dark (light) red areas 68 (90)\% confidence sets. \par}
@@ -343,7 +345,7 @@ To have a sense of the importance of the response of hours worked of low- and mo
 	\centering
 	\caption{Impulse responses to a monetary policy shock.}
     \includegraphics
-    [width=0.85\textwidth,trim = 1cm 9cm 1cm 9cm]{figures_final/figure3.pdf}    %[width=6.5in,height=2.5in,scale = 0.50, clip=true,trim = 0cm 10cm -0.5cm 11cm]{figures_final/figure3.pdf}
+    [width=0.85\textwidth]{figures_final/figure3.pdf}    %[width=6.5in,height=2.5in,scale = 0.50, clip=true,trim = 0cm 10cm -0.5cm 11cm]{figures_final/figure3.pdf}
 	\label{FF:counterfactual:IRF}   
     
     {\footnotesize \textit{Notes:} This figure depicts the impulse responses to a monetary policy tightening shock. The left panel reports the responses of hours worked for the first quintile of the earning distribution, the cental panel the aggregate measure of hours worked using the CPS data, and right panel the alternative aggregate measure of hours worked which excludes first quintile of the earning distribution.  Dark (light) red areas 68 (90)\% confidence sets. \par}
@@ -370,7 +372,7 @@ A potential concern about the empirical evidence presented earlier is that the o
     \centering
     \caption{Responses of hours for full-time employees}%
 %[trim=left bottom right top, clip]
-\includegraphics[width=0.7\textwidth,trim = 2cm 4cm 2cm 4cm]{figures_final/figure_ft_2.pdf}
+\includegraphics[width=0.7\textwidth]{figures_final/figure_ft_2.pdf}
     \label{fig:t:hours_full}   
     
 {\footnotesize \textit{Notes:} This figure depicts the impulse responses to a monetary policy tightening shock. Dark (light) red areas 68 (90)\% confidence sets. \par}
@@ -384,7 +386,7 @@ To rule those out, we leverage the panel dimension of the CPS constructed by the
 	\centering
     \caption{Distribution of responses of the growth rate of hours worked and of employment after monetary policy tightening.}
 %	\centering\includegraphics[width=\textwidth]{figures_final/test3}
-	\includegraphics[width=0.9\textwidth,trim = 2cm 4cm 2cm 3.8cm]{figures_final/figure4_6.pdf}
+	\includegraphics[width=0.9\textwidth]{figures_final/figure4_6.pdf}
 	\label{FF:panel:IRF}
     
 	{\footnotesize \textit{Notes:} The top panel depicts response of the growth rate of hours worked growth six months (red) and two (blue) years after the shock using the panel version of the CPS. The bottom panel depicts response of the outflows from employment six months (red) and two (blue) years after the shock using the panel version of the CPS. Shaded areas (solid lines) 68 (90)\% confidence sets. \par}
