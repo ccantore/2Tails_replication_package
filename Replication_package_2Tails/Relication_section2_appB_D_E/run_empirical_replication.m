@@ -195,10 +195,7 @@ function local_run_script(script_name)
 end
 
 function local_plot_cached_industry_by_wage(this_dir, out_dir)
-    cache_file = local_first_existing({
-        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','ind_wage_cepr.mat')
-        fullfile(this_dir,'data','Raw_data','CPS','Output','ind_wage_cepr.mat')
-    });
+    cache_file = fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','ind_wage_cepr.mat');
     S = load(cache_file, 'DATA2', 'PROB');
 
     nam = {'agr','min','con','man','trade','trans','info', ...
@@ -219,10 +216,7 @@ function local_plot_cached_industry_by_wage(this_dir, out_dir)
 end
 
 function local_plot_cached_college_by_wage2(this_dir, out_dir)
-    cache_file = local_first_existing({
-        fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','educ_wage_cepr_all.mat')
-        fullfile(this_dir,'data','Raw_data','CPS','Output','educ_wage_cepr_all.mat')
-    });
+    cache_file = fullfile(this_dir,'data','Raw_data','CPS','ELABORATED DATA','educ_wage_cepr_all.mat');
     S = load(cache_file, 'DATA2', 'PROB');
 
     nam = {'LTHS','HS','Somecollege','college','advanced'};

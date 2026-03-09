@@ -1,7 +1,7 @@
 # A tail of labor supply and a tale of monetary policy
 
 Dear Editor,
-This note reports our responses to the feedback redecived from Refine.ink on 2026-02-18 with details what has changed in the manuscript.
+This note reports our responses to the feedback redecived from Refine.ink on 2026-02-18 with details of the minor changes we have made to the manuscript as a result
 
 We report the original feedback plus our responses below.
 **Legend**: **Done** = fully implemented. **Partial** = partially implemented. 

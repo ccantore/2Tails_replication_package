@@ -1,0 +1,104 @@
+Third-party data redistribution notes
+====================================
+
+Archive:
+Replication_package_2Tails
+
+Date of this note:
+2026-03-08
+
+Purpose:
+This file documents source-specific redistribution notes for bundled third-party data and spreadsheets included in the replication package.
+
+Important:
+
+- This file is a documentation note, not a legal opinion.
+- The original source terms control.
+- If any source terms change, the source terms supersede this note.
+
+1. CEPR CPS ORG extracts
+------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/CPS/CEPR_ORG/cepr_org_*.dta
+
+Current note:
+- CEPRdata publicly distributes these extracts for download.
+- The CEPR website terms state that the website is licensed under CC BY 4.0.
+
+
+Source URLs:
+- https://ceprdata.org/
+- https://cepr.net/terms-of-use/
+
+2. Kansas City Fed longitudinal CPS extract
+-------------------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/CPS/kansas/CPS_harmonized_variable_longitudinally_matched_age16plus.dta
+
+- The Federal Reserve Bank of Kansas City disclaimer states that reproduction of information on its website may be made without limitation as to number, provided that it is not for the purpose of private gain.
+
+
+Source URL:
+- https://www.kansascityfed.org/about-us/disclaimer/
+
+3. U.S. Bureau of Labor Statistics series
+-----------------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/raw/AWHNONAG.xls
+- Relication_section2_appB_D_E/data/Raw_data/raw/AWHMAN.xls
+- Relication_section2_appB_D_E/data/Raw_data/raw/CES0500000030.xls
+- Relication_section2_appB_D_E/data/Raw_data/raw/un/*.xls
+
+- BLS states that everything it publishes is in the public domain, except previously copyrighted photographs and illustrations.
+
+Source URL:
+- https://www.bls.gov/opub/copyright-information.htm
+
+4. Federal Reserve Board series
+-------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/raw/ebp2.xls
+
+- The Federal Reserve Board states that, unless otherwise indicated, information on its website is in the public domain and may be copied and distributed without permission, with citation.
+
+Source URL:
+- https://www.federalreserve.gov/disclaimer.htm
+
+5. FRBSF monetary policy surprises spreadsheet
+----------------------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/raw/FOMC_Bauer_Swanson.xlsx
+
+- The Federal Reserve Bank of San Francisco site policies state that, unless otherwise specified, reproduction of FRBSF information may be made without limitation as to number, provided it is not distributed for the purpose of private gain and is appropriately credited to FRBSF.
+
+Source URLs:
+- https://www.frbsf.org/site-policies/
+- https://www.frbsf.org/research-and-insights/data-and-indicators/monetary-policy-surprises/
+
+6. Miranda-Agrippino and Ricco conventional Fed monetary policy shock instrument
+--------------------------------------------------------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/raw/ff4_instruments_shared.xlsx
+
+- Instrument in Miranda-Agrippino and Ricco (2021), "The Transmission of Monetary Policy Shocks".
+
+
+7. FRED-MD monthly macro database
+---------------------------------
+
+Files:
+- Relication_section2_appB_D_E/data/Raw_data/raw/fred_md_new.xls
+
+  - source: https://www.stlouisfed.org/research/economists/mccracken/fred-databases
+  - vintage: FRED-MD 2021 M5
+- St. Louis Fed FRED legal notices and terms warn that some FRED series are owned by third parties and may require permission for uses beyond personal use.
+
+Source URLs:
+- https://www.stlouisfed.org/research/economists/mccracken/fred-databases
+- https://fred.stlouisfed.org/legal/

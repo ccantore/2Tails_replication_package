@@ -1,0 +1,60 @@
+Replication package rights notice
+================================
+
+Archive:
+Replication_package_2Tails
+
+Paper:
+"A tail of labor supply and a tale of monetary policy"
+by Cristiano Cantore, Filippo Ferroni, Haroon Mumtaz, and Angeliki Theophilopoulou
+
+Date of this notice:
+2026-03-08
+
+1. Scope
+--------
+
+This archive contains a mixture of:
+
+- original code, documentation, and generated materials created by the authors;
+- third-party software components distributed under their own license terms; and
+- third-party data and spreadsheets whose source-specific redistribution notes are documented in LICENSE-third-party-data.txt.
+
+No single blanket open-source license applies to every file in this archive.
+
+2. Author-created materials
+---------------------------
+
+Unless otherwise indicated, original code and documentation created by the authors are included to support replication, verification, and scholarly use of the results reported in the paper.
+
+This file is a rights notice for the archive. It does not override:
+
+- any journal, repository, or submission-platform terms that govern distribution of the archive; or
+- any separate license or notice attached to a specific subdirectory or file.
+
+If the authors later choose a package-wide open-source license, this file should be replaced or updated accordingly.
+
+3. Third-party software components
+----------------------------------
+
+Some bundled software components retain their own license terms. Examples currently present in the archive include:
+
+- Relication_section2_appB_D_E/data/functions/iris/+optim/pso_license.txt
+- Relication_section2_appB_D_E/data/functions/iris/classlib/@WorkerObjWrapper/license.txt
+- Relication_section2_appB_D_E/data/functions/x13tbx/license.txt
+
+Users are responsible for complying with the terms in those notices when copying, redistributing, or modifying those components.
+
+4. Third-party data
+-------------------
+
+Source-specific redistribution notes for bundled third-party data are documented in:
+
+- LICENSE-third-party-data.txt
+
+No additional rights in third-party data are granted by this file.
+
+5. No warranty
+--------------
+
+This archive is provided "as is", without warranty of any kind, to the extent permitted by applicable law.
